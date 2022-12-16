@@ -1,12 +1,18 @@
 package co.com.jorge.springboot.form.app.models.domain;
 
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
 public class User {
 
+    @NotEmpty
     private String username;
 
+    @NotEmpty
     private String password;
 
+    @Email
     private String email;
 
     public String getUsername() {
