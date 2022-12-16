@@ -13,6 +13,7 @@ public class User {
     private String password;
 
     @Email
+    @NotEmpty
     private String email;
 
     public String getUsername() {
