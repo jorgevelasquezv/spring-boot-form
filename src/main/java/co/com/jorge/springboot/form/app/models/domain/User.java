@@ -3,28 +3,30 @@ package co.com.jorge.springboot.form.app.models.domain;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class User {
 
+    @Pattern(regexp = "[0-9]{2}[.,][0-9]{3}[.,][0-9]{3}-[A-Z]")
     private String id;
 
-    @NotEmpty(message = "El nombre no puede ser vacío")
+    @NotEmpty
     private String name;
 
-    @NotEmpty(message = "El apellido no puede ser vacío")
+    @NotEmpty
     private String lastname;
 
-    @NotEmpty(message = "El nombre de usuario no puede ser vacío")
+    @NotEmpty
     @Size(min = 3, max = 8)
     private String username;
 
-    @NotEmpty(message = "El password no puede ser vacío")
+    @NotEmpty
     @Size(min = 3, max = 8)
     private String password;
 
     @Email
-    @NotEmpty(message = "Correo con formato incorrecto")
+    @NotEmpty
     private String email;
 
     public String getUsername() {
