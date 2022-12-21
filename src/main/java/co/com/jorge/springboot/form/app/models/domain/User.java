@@ -1,32 +1,29 @@
 package co.com.jorge.springboot.form.app.models.domain;
 
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class User {
 
-    @Pattern(regexp = "[0-9]{2}[.,][0-9]{3}[.,][0-9]{3}-[A-Z]")
+//    @Pattern(regexp = "[0-9]{2}[.,][0-9]{3}[.,][0-9]{3}-[A-Z]")
     private String id;
 
-    @NotEmpty
+//    @NotEmpty
     private String name;
 
     @NotEmpty
     private String lastname;
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 3, max = 8)
     private String username;
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 3, max = 8)
     private String password;
 
     @Email
-    @NotEmpty
+    @NotBlank
     private String email;
 
     public String getUsername() {

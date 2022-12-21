@@ -1,11 +1,15 @@
 package co.com.jorge.springboot.form.app.controllers;
 
 import co.com.jorge.springboot.form.app.models.domain.User;
+import co.com.jorge.springboot.form.app.validations.UserValidator;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -13,6 +17,14 @@ import org.springframework.web.bind.support.SessionStatus;
 @Controller
 @SessionAttributes("user")
 public class FormController {
+
+    @Autowired
+    private UserValidator validator;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        binder.addValidators(validator);
+    }
 
     @GetMapping("/form")
     public String form(Model model){
@@ -28,6 +40,8 @@ public class FormController {
 
     @PostMapping("/form")
     public String sendForm(@Valid User user, BindingResult result, Model model, SessionStatus status){
+//        validator.validate(user, result);
+
         model.addAttribute("titulo", "Formulario Usuario");
 
         if (result.hasErrors()){
