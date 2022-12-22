@@ -12,7 +12,7 @@
             <div>
                 <select id="country" th:field="*{country}">
                     <option value="">--- Seleccionar ---</option>
-                    <option th:each="country: ${countries}" th:text="${country}" th:value="${country}"></option>
+                    <option th:each="country: ${countriesMap.entrySet()}" th:text="${country.value}" th:value="${country.key}"></option>
                 </select>
             </div>
             <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>

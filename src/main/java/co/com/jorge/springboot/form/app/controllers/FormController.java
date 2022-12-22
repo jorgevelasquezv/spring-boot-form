@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @SessionAttributes("user")
@@ -37,6 +35,18 @@ public class FormController {
     @ModelAttribute("countries")
     public List<String> countries(){
         return Arrays.asList("Colombia", "Ecuador", "Perú", "Mexico", "Chile", "Argentina");
+    }
+
+    @ModelAttribute("countriesMap")
+    public Map<String, String> countriesMap(){
+        Map<String, String > countries = new HashMap<>();
+        countries.put("CO", "Colombia");
+        countries.put("EC", "Ecuador");
+        countries.put("PE", "Perú");
+        countries.put("MX", "Mexico");
+        countries.put("CL", "Chile");
+        countries.put("AR", "Argentina");
+        return countries;
     }
 
     @GetMapping("/form")
