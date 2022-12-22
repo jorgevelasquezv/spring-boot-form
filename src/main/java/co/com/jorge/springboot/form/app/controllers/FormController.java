@@ -1,5 +1,6 @@
 package co.com.jorge.springboot.form.app.controllers;
 
+import co.com.jorge.springboot.form.app.editors.NameUpperCaseEditor;
 import co.com.jorge.springboot.form.app.models.domain.User;
 import co.com.jorge.springboot.form.app.validations.UserValidator;
 import jakarta.validation.Valid;
@@ -31,6 +32,7 @@ public class FormController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class,new CustomDateEditor(dateFormat, false));
+        binder.registerCustomEditor(String.class, "name", new NameUpperCaseEditor());
     }
 
     @GetMapping("/form")
