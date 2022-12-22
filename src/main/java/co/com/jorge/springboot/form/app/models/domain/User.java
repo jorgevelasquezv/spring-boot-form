@@ -1,17 +1,24 @@
 package co.com.jorge.springboot.form.app.models.domain;
 
 
+import co.com.jorge.springboot.form.app.validations.IdentificadorRegex;
+import co.com.jorge.springboot.form.app.validations.Requerido;
 import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 public class User {
 
 //    @Pattern(regexp = "[0-9]{2}[.,][0-9]{3}[.,][0-9]{3}-[A-Z]")
+    @IdentificadorRegex
     private String id;
 
 //    @NotEmpty
     private String name;
 
-    @NotEmpty
+//    @NotEmpty
+    @Requerido
     private String lastname;
 
     @NotBlank
@@ -25,6 +32,16 @@ public class User {
     @Email
     @NotBlank
     private String email;
+
+    @NotNull
+    @Min(1)
+    @Max(150)
+    private Integer age;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
+    private Date birthDate;
 
     public String getUsername() {
         return username;
@@ -72,5 +89,21 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }
