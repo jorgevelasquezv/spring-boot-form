@@ -8,6 +8,7 @@
     <h2 th:text="${titulo}"></h2>
 
     <ul>
+        <li th:text="${user.country}"></li>
         <li th:text="${user.name}"></li>
         <li th:text="${user.lastname}"></li>
         <li th:text="${user.username}"></li>
@@ -15,7 +16,7 @@
         <li th:text="${user.email}"></li>
         <li th:text="${user.id}"></li>
         <li th:text="${user.age}"></li>
-        <li th:text="${user.birthDate}"></li>
+        <li th:text="${#dates.format(user.birthDate, 'dd-MM-yyyy')}"></li>
     </ul>
 </body>
 </html>
