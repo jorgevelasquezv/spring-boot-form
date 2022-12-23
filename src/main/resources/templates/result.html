@@ -20,5 +20,9 @@
         <li th:text="${user.country.name}"></li>
         <li th:text="${user.country.id}"></li>
     </ul>
+    <h5>Roles</h5>
+    <ul>
+        <li th:each="role: ${user.roles}" th:text="${role}"></li>
+    </ul>
 </body>
 </html>

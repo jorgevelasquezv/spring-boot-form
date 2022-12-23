@@ -3,10 +3,10 @@ package co.com.jorge.springboot.form.app.models.domain;
 
 import co.com.jorge.springboot.form.app.validations.IdentificadorRegex;
 import co.com.jorge.springboot.form.app.validations.Requerido;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
 
@@ -38,9 +38,11 @@ public class User {
     @NotNull
     private Date birthDate;
 
-//    @Valid
     @NotNull
     private Country country;
+
+    @NotEmpty
+    private List<String> roles;
 
     public String getUsername() {
         return username;
@@ -112,5 +114,13 @@ public class User {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }

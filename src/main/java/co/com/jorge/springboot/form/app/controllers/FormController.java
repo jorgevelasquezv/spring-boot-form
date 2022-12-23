@@ -64,6 +64,15 @@ public class FormController {
         return countries;
     }
 
+    @ModelAttribute("rolesString")
+    public List<String> rolesString(){
+        return Arrays.asList(
+                "ROLE_ADMIN",
+                "ROLE_USER",
+                "ROLE_MODERATOR"
+        );
+    }
+
     @GetMapping("/form")
     public String form(Model model){
         User user = new User();
