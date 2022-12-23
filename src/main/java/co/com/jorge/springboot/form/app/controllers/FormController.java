@@ -1,7 +1,10 @@
 package co.com.jorge.springboot.form.app.controllers;
 
+import co.com.jorge.springboot.form.app.editors.CountryPropertyEditor;
 import co.com.jorge.springboot.form.app.editors.NameUpperCaseEditor;
+import co.com.jorge.springboot.form.app.models.domain.Country;
 import co.com.jorge.springboot.form.app.models.domain.User;
+import co.com.jorge.springboot.form.app.services.CountryService;
 import co.com.jorge.springboot.form.app.validations.UserValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,12 @@ public class FormController {
     @Autowired
     private UserValidator validator;
 
+    @Autowired
+    private CountryService countryService;
+
+    @Autowired
+    private CountryPropertyEditor countryPropertyEditor;
+
     @InitBinder
     public void initBinder(WebDataBinder binder){
         binder.addValidators(validator);
@@ -30,6 +39,12 @@ public class FormController {
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class,new CustomDateEditor(dateFormat, false));
         binder.registerCustomEditor(String.class, "name", new NameUpperCaseEditor());
+        binder.registerCustomEditor(Country.class, "country", countryPropertyEditor);
+    }
+
+    @ModelAttribute("listCountries")
+    public List<Country> listCountries(){
+        return countryService.getAll();
     }
 
     @ModelAttribute("countries")
