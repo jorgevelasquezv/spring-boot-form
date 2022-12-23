@@ -8,6 +8,12 @@
     <h2 th:text="${titulo}"></h2>
     <form th:action="@{/form}" th:object="${user}" method="post">
         <div>
+            <label for="enable">Enable</label>
+            <div>
+                <input type="checkbox" id="enable" th:field="*{enable}">
+            </div>
+        </div>
+        <div>
             <label for="country">Country</label>
             <div>
                 <select id="country" th:field="*{country}">
@@ -18,10 +24,10 @@
             <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
         </div>
         <div>
-            <label>Rol</label>
-            <div th:each="role: ${rolesMap.entrySet()}">
-                <input type="checkbox" th:field="*{roles}" th:value="${role.key}">
-                <label th:text="${role.value}" th:for="${#ids.prev('roles')}"></label>
+            <label>Roles</label>
+            <div th:each="role: ${listRoles}">
+                <input type="checkbox" th:field="*{roles}" th:value="${role.id}">
+                <label th:text="${role.name}" th:for="${#ids.prev('roles')}"></label>
             </div>
             <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
         </div>

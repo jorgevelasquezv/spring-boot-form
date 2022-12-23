@@ -42,7 +42,9 @@ public class User {
     private Country country;
 
     @NotEmpty
-    private List<String> roles;
+    private List<Role> roles;
+
+    private Boolean enable;
 
     public String getUsername() {
         return username;
@@ -116,11 +118,19 @@ public class User {
         this.country = country;
     }
 
-    public List<String> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
     }
 }

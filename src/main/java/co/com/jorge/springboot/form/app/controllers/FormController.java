@@ -2,9 +2,12 @@ package co.com.jorge.springboot.form.app.controllers;
 
 import co.com.jorge.springboot.form.app.editors.CountryPropertyEditor;
 import co.com.jorge.springboot.form.app.editors.NameUpperCaseEditor;
+import co.com.jorge.springboot.form.app.editors.RolePropertyEditor;
 import co.com.jorge.springboot.form.app.models.domain.Country;
+import co.com.jorge.springboot.form.app.models.domain.Role;
 import co.com.jorge.springboot.form.app.models.domain.User;
 import co.com.jorge.springboot.form.app.services.CountryService;
+import co.com.jorge.springboot.form.app.services.RoleService;
 import co.com.jorge.springboot.form.app.validations.UserValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,12 @@ public class FormController {
     @Autowired
     private CountryPropertyEditor countryPropertyEditor;
 
+    @Autowired
+    private RolePropertyEditor rolePropertyEditor;
+
+    @Autowired
+    private RoleService roleService;
+
     @InitBinder
     public void initBinder(WebDataBinder binder){
         binder.addValidators(validator);
@@ -40,6 +49,7 @@ public class FormController {
         binder.registerCustomEditor(Date.class,new CustomDateEditor(dateFormat, false));
         binder.registerCustomEditor(String.class, "name", new NameUpperCaseEditor());
         binder.registerCustomEditor(Country.class, "country", countryPropertyEditor);
+        binder.registerCustomEditor(Role.class, "roles", rolePropertyEditor);
     }
 
     @ModelAttribute("listCountries")
@@ -82,12 +92,18 @@ public class FormController {
         return roles;
     }
 
+    @ModelAttribute("listRoles")
+    public List<Role> listRoles(){
+        return roleService.getAll();
+    }
+
     @GetMapping("/form")
     public String form(Model model){
         User user = new User();
         user.setName("Isaac");
         user.setLastname("Velasquez");
         user.setId("1.245.546-D");
+        user.setEnable(true);
         model.addAttribute("titulo", "Formulario Usuario");
         model.addAttribute("user", user);
 
