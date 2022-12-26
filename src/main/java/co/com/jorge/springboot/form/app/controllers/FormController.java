@@ -97,6 +97,12 @@ public class FormController {
         return roleService.getAll();
     }
 
+
+    @ModelAttribute("gender")
+    public List<String> gender(){
+        return Arrays.asList("Women", "Woman");
+    }
+
     @GetMapping("/form")
     public String form(Model model){
         User user = new User();

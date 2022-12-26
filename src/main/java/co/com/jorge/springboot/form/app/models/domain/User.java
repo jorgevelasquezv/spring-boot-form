@@ -46,6 +46,9 @@ public class User {
 
     private Boolean enable;
 
+    @NotEmpty
+    private String gender;
+
     public String getUsername() {
         return username;
     }
@@ -132,5 +135,13 @@ public class User {
 
     public void setEnable(Boolean enable) {
         this.enable = enable;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
