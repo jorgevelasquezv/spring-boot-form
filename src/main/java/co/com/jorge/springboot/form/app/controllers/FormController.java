@@ -110,6 +110,9 @@ public class FormController {
         user.setLastname("Velasquez");
         user.setId("1.245.546-D");
         user.setEnable(true);
+        user.setSecretValue("*52-89*");
+        user.setCountry(new Country(4, "MX", "Mexico"));
+        user.setRoles(Arrays.asList(new Role(2, "Usuario", "ROLE_USER")));
         model.addAttribute("titulo", "Formulario Usuario");
         model.addAttribute("user", user);
 

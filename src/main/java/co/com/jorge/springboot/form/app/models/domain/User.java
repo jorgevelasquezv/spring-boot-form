@@ -49,6 +49,8 @@ public class User {
     @NotEmpty
     private String gender;
 
+    private String secretValue;
+
     public String getUsername() {
         return username;
     }
@@ -143,5 +145,13 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getSecretValue() {
+        return secretValue;
+    }
+
+    public void setSecretValue(String secretValue) {
+        this.secretValue = secretValue;
     }
 }
