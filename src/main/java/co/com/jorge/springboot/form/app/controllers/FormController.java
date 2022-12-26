@@ -120,17 +120,20 @@ public class FormController {
     }
 
     @PostMapping("/form")
-    public String sendForm(@Valid User user, BindingResult result, Model model, SessionStatus status){
-//        validator.validate(user, result);
-
-        model.addAttribute("titulo", "Formulario Usuario");
-
+    public String sendForm(@Valid User user, BindingResult result, Model model){
         if (result.hasErrors()){
+            model.addAttribute("titulo", "Formulario Usuario");
             return "form";
         }
+        return "redirect:/see";
+    }
 
+    @GetMapping("/see")
+    public String see(@SessionAttribute(name="user", required = false) User user, Model model, SessionStatus status){
+        if (user == null){
+            return "redirect:/form";
+        }
         model.addAttribute("titulo", "Resultado form");
-        model.addAttribute("user", user);
         status.setComplete(); // Elimina el objeto que se tenía guardado en session
         return "result";
     }
