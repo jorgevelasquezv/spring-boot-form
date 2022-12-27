@@ -8,6 +8,9 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+
+    <section th:replace="components/timeElapsed :: timeElapsed"></section>
+
     <h2 th:text="${titulo}"></h2>
     <div class="container">
         <form th:action="@{/form}" th:object="${user}" method="post">
